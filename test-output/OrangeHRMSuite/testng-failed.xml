@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [OrangeHRMSuite]">
+  <listeners>
+    <listener class-name="utilities.Reporting"/>
+  </listeners>
+  <test thread-count="5" name="Test(failed)">
+    <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="testCases.Login_DataDriven">
+        <methods>
+          <include name="loginWithDifferentSetOfData" invocation-numbers="1 2"/>
+          <include name="setup"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- testCases.Login_DataDriven -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [OrangeHRMSuite] -->
