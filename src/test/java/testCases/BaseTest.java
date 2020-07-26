@@ -8,9 +8,12 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
+import org.apache.commons.io.FileUtils;
 
 import com.aventstack.extentreports.utils.FileUtil;
 
@@ -23,7 +26,7 @@ public class BaseTest {
 	ReadConfig readConfig=new ReadConfig();
 	
 	@Parameters("browser")
-	@BeforeTest
+	@BeforeMethod
 	public void setup(String browserValue) {
 		
 		logger=Logger.getLogger(getClass());
@@ -39,7 +42,7 @@ public class BaseTest {
 	 * public void launchOrangeHRMLoginPage() {
 	 * driver.get("https://opensource-demo.orangehrmlive.com/"); }
 	 */
-	@AfterTest
+	@AfterMethod
 	public void tearDown() {
 		driver.quit();
 	}
@@ -52,8 +55,12 @@ public class BaseTest {
 			srcFolder.mkdir();
 		}
 		File targetFile=new File(srcFolder+"/tcName"+".png");
-		//FileUtil.class
-		
+		try {
+			FileUtils.copyFile(srcFile, targetFile);
+		}
+		catch(Exception e) {
+			System.out.println("Problem in capturing screenshot: "+e.getMessage());
+		}
 	}
 
 }

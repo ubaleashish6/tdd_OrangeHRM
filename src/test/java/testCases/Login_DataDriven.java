@@ -21,11 +21,16 @@ public class Login_DataDriven extends BaseTest {
 		loginPage.enterUsername(userName);
 		loginPage.enterPassword(password);
 		loginPage.clickLogin();
-		if(driver.getTitle().equalsIgnoreCase("orangeHRM")) {
-			Assert.assertTrue(true);
-			driver.findElement(By.linkText("Welcome Admin")).click();
+		try {
+			if(driver.findElement(By.linkText("Welcome Admin")).isDisplayed()) {
+				Assert.assertTrue(true);
+				driver.findElement(By.linkText("Welcome Admin")).click();
+			}
 		}
-		else {
+		catch(Exception e) {
+			
+				takeScreenshot(driver, "Login_DataDriven");
+				Assert.assertTrue(false);
 			
 		}
 	}

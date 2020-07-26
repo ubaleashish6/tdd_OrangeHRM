@@ -56,6 +56,7 @@ public class Reporting extends TestListenerAdapter {
 			}
 			catch(Exception e) {
 				e.printStackTrace();
+				//htmlReporter.
 			}
 		}
 	}
