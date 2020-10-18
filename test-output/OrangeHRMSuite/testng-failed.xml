@@ -5,11 +5,11 @@
     <listener class-name="utilities.Reporting"/>
   </listeners>
   <test thread-count="5" name="Test(failed)">
-    <parameter name="browser" value="chrome"/>
     <classes>
       <class name="testCases.Login_DataDriven">
+        <parameter name="browser" value="chrome"/>
         <methods>
-          <include name="loginWithDifferentSetOfData" invocation-numbers="1 2"/>
+          <include name="loginWithDifferentSetOfData"/>
           <include name="setup"/>
           <include name="tearDown"/>
         </methods>

@@ -17,6 +17,7 @@ import org.apache.commons.io.FileUtils;
 
 import com.aventstack.extentreports.utils.FileUtil;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import utilities.ReadConfig;
 
 public class BaseTest {
@@ -25,16 +26,21 @@ public class BaseTest {
 	public static Logger logger=null;
 	ReadConfig readConfig=new ReadConfig();
 	
-	@Parameters("browser")
-	@BeforeMethod
-	public void setup(String browserValue) {
+	
+	//@BeforeMethod
+	//@Parameters("browser")
+	public void setup() {
 		
 		logger=Logger.getLogger(getClass());
 		PropertyConfigurator.configure("Log4j.properties");
-		if(browserValue.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", readConfig.getChromePath());
-			driver=new ChromeDriver();
-		}
+		//System.setProperty("webdriver.chrome.driver", readConfig.getChromePath());
+		WebDriverManager.chromedriver().setup();
+		driver=new ChromeDriver();
+		/*
+		 * if(browserValue.equalsIgnoreCase("chrome")) {
+		 * System.setProperty("webdriver.chrome.driver", readConfig.getChromePath());
+		 * driver=new ChromeDriver(); }
+		 */
 		driver.manage().window().maximize();
 		driver.get(readConfig.getApplicationURL());
 	}
@@ -42,7 +48,7 @@ public class BaseTest {
 	 * public void launchOrangeHRMLoginPage() {
 	 * driver.get("https://opensource-demo.orangehrmlive.com/"); }
 	 */
-	@AfterMethod
+	//@AfterMethod
 	public void tearDown() {
 		driver.quit();
 	}

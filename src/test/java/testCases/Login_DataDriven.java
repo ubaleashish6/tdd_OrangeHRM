@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -14,6 +16,15 @@ import utilities.XLSUtils;
 public class Login_DataDriven extends BaseTest {
 	ReadConfig objConfig=new ReadConfig();
 	//static String testDataFile=objConfig.getTestDataFile();
+	
+	@BeforeMethod
+	public void init() {
+		setup();
+	}
+	@AfterMethod
+	public void closeSession() {
+		tearDown();
+	}
 	
 	@Test(dataProvider="LoginData")
 	public void loginWithDifferentSetOfData(String userName, String password) {

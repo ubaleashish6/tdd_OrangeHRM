@@ -5,9 +5,9 @@
     <classes>
       <class name="testCases.Login_DataDriven">
         <methods>
-          <include name="loginWithDifferentSetOfData"/>
-          <include name="setup"/>
-          <include name="tearDown"/>
+          <include name="loginWithDifferentSetOfData" invocation-numbers="0 1 2"/>
+          <include name="init"/>
+          <include name="closeSession"/>
         </methods>
       </class> <!-- testCases.Login_DataDriven -->
     </classes>

@@ -4,10 +4,17 @@
   <listeners>
   	<listener class-name="utilities.Reporting" />
   </listeners>	
+  
   <test thread-count="5" name="Test">
-	<parameter name="browser"  value="chrome"/> 
+	<!--<parameter name="browser"  value="chrome"/> -->
     <classes>
-      <class name="testCases.Login_DataDriven"/>
+    	
+      <class name="testCases.Login_DataDriven">
+      <!-- <parameter name="browser"  value="chrome"/> -->
+      	<methods>
+      		<include name="loginWithDifferentSetOfData"/>
+      	</methods>
+      </class>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
